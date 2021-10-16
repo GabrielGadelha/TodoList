@@ -30,8 +30,8 @@ public class ConcludedController {
 	public ResponseEntity<?> getByEmail(@Param("email") String email){
 		return new ResponseEntity<List<TodoDTO>>(service.findByUser(email), HttpStatus.OK);
 	}
-	@GetMapping("/search/byEmailAndDeadline")
-	public ResponseEntity<?> getByEmailAndDeadline(@Param("email") String email, @Param("deadline")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate deadline){
+	@GetMapping("/search/byEmailAndConcluded")
+	public ResponseEntity<?> getByEmailAndDeadline(@Param("email") String email, @Param("concluded")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate deadline){
 		return new ResponseEntity<List<TodoDTO>>(service.findByUserAndDeadLine(email, deadline), HttpStatus.OK);
 	}
 	
