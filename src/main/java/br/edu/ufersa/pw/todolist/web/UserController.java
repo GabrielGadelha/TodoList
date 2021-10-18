@@ -18,7 +18,7 @@ import br.edu.ufersa.pw.todolist.repositories.UserRepository;
 import br.edu.ufersa.pw.todolist.services.UserService;
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("/api/users")
 public class UserController {
 	@Autowired
 	UserRepository userRepo;
@@ -30,8 +30,8 @@ public class UserController {
 	}
 	@PostMapping
 	public ResponseEntity<UserDto> save (@RequestBody CreateUserDto dto) {
-		
-		
+
+
 		UserDto user =   service.save(dto);
 		if(user==null) {
 			return new ResponseEntity<> (null, HttpStatus.INTERNAL_SERVER_ERROR);
