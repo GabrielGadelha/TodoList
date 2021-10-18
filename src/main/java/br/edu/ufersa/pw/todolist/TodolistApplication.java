@@ -11,17 +11,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.format.Formatter;
-
 import br.edu.ufersa.pw.todolist.repositories.UserRepository;
 import br.edu.ufersa.pw.todolist.util.LocalDateFormatter;
-
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class TodolistApplication {
 	@Autowired
 	UserRepository userRepo;
-	private static final Logger logger = 
+	private static final Logger logger =
 			LoggerFactory.getLogger(TodolistApplication.class);
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(TodolistApplication.class, args);
 		logger.info("Hello start");
@@ -34,5 +34,14 @@ public class TodolistApplication {
 	@Primary
 	public Formatter<LocalDate> localDateFormatter() {
 	    return new LocalDateFormatter();
+	}
+    @Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("*");
+			}
+		};
 	}
 }
