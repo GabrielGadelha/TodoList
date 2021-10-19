@@ -13,9 +13,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.format.Formatter;
 import br.edu.ufersa.pw.todolist.repositories.UserRepository;
 import br.edu.ufersa.pw.todolist.util.LocalDateFormatter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class TodolistApplication {
 	@Autowired
@@ -36,19 +35,15 @@ public class TodolistApplication {
 	public Formatter<LocalDate> localDateFormatter() {
 	    return new LocalDateFormatter();
 	}
-    @Bean
-    public CorsFilter corsFilter() {
-        final CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("OPTIONS");
-        config.setMaxAge(3600L);
-
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-
-        return new CorsFilter(source);
-    }
+     @Bean
+	    public WebMvcConfigurer corsConfigurer() {
+	        return new WebMvcConfigurer() {
+	            @Override
+	            public void addCorsMappings(CorsRegistry registry) {
+	                registry
+	                .addMapping("/**")
+	                .allowedOrigins("*","http://localhost:3000");
+	            }
+	        };
+	    }
 }
