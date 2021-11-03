@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
-	throws Exception {
+	throws Exception { 
 	auth.userDetailsService(userDetailsService)
 	.passwordEncoder(new BCryptPasswordEncoder());
 	}
@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().cors().and().authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/login").permitAll()
+		.antMatchers(HttpMethod.POST, "/api/users").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.addFilterBefore(new LoginFilter("/login",authenticationManager()),	UsernamePasswordAuthenticationFilter.class)
