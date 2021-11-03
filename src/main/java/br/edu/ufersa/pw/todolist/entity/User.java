@@ -18,7 +18,7 @@ public class User {
 	private String email;
 	private String senha;
 	@Id
-	@GeneratedValue (strategy = GenerationType.SEQUENCE)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	private UUID uuid;
 	@OneToMany(mappedBy="user")

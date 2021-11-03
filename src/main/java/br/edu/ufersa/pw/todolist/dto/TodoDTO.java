@@ -1,11 +1,12 @@
 package br.edu.ufersa.pw.todolist.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import br.edu.ufersa.pw.todolist.entity.Concluded;
 import br.edu.ufersa.pw.todolist.entity.Todo;
 
-public class TodoDTO {
+public class TodoDTO implements Serializable{
 	LocalDate data;
 	String todo;
 	Long id;

@@ -47,6 +47,7 @@ public class TodoService {
 		todo.setDeadLine(dto.getData());
 		todo.setTodo(dto.getTodo());
 		todo.setUser(userRepo.findByEmail(dto.getEmail()));
+		
 		todo = repo.save(todo);
 		CreateTodoDTO retorno = new CreateTodoDTO();
 		retorno.setData(todo.getDeadLine());

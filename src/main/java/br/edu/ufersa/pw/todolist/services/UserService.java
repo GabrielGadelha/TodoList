@@ -1,6 +1,6 @@
 package br.edu.ufersa.pw.todolist.services;
 
-import org.modelmapper.ModelMapper; 
+import org.modelmapper.ModelMapper;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,6 +20,11 @@ public class UserService {
 	public UserDto findByEmail(String email) {
 		User user = repo.findByEmail(email);
 		UserDto dto = mapper.map(user, UserDto.class);
+		return dto;
+	}
+	public CreateUserDto findUserByEmail(String email) {
+		User user = repo.findByEmail(email);
+		CreateUserDto dto = mapper.map(user, CreateUserDto.class);
 		return dto;
 	}
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
