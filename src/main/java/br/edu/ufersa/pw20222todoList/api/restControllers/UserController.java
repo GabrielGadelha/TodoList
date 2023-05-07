@@ -41,7 +41,7 @@ public class UserController {
 		for(User user: service.getAll()) {
 			users.add(mapper.map(user, UserDTO.class));
 		}
-		user = new UserDTO();
+		UserDTO user = new UserDTO();
 		user.setEmail("entrou no get");
 		user.setSenha("ENTROU NO GET");
 		users.add(user);
