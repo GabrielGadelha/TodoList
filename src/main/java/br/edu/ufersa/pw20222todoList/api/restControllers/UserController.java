@@ -44,7 +44,7 @@ public class UserController {
 		user = new UserDTO();
 		user.setEmail("entrou no get");
 		user.setSenha("ENTROU NO GET");
-		users.add(user)
+		users.add(user);
 		return users;
 	}
 	@GetMapping ("/{userId}")
