@@ -43,7 +43,7 @@ public class UserController {
 		}
 		UserDTO user = new UserDTO();
 		user.setEmail("entrou no get");
-		user.setSenha("ENTROU NO GET");
+		
 		users.add(user);
 		return users;
 	}
