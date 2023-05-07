@@ -36,6 +36,7 @@ public class UserController {
 	
 	@GetMapping
 	public List<UserDTO> listar(){ 
+		System.out.println("Entrou no get");
 		List<UserDTO> users = new ArrayList<UserDTO>();
 		for(User user: service.getAll()) {
 			users.add(mapper.map(user, UserDTO.class));
@@ -54,6 +55,7 @@ public class UserController {
 	}
 	@PostMapping
 	public ResponseEntity<UserDTO> criar(@Valid @RequestBody CreateUserDTO dto){
+		System.out.println("Entrou no post");
 		User user = service.createUser(mapper.map(dto, User.class));
 		if(user!=null) {
 			UserDTO dto2 = mapper.map(user, UserDTO.class);
