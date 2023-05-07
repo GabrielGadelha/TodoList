@@ -36,12 +36,15 @@ public class UserController {
 	
 	@GetMapping
 	public List<UserDTO> listar(){ 
-		System.out.println("Entrou no get");
+		
 		List<UserDTO> users = new ArrayList<UserDTO>();
 		for(User user: service.getAll()) {
 			users.add(mapper.map(user, UserDTO.class));
 		}
-		
+		user = new UserDTO();
+		user.setEmail("entrou no get");
+		user.setSenha("ENTROU NO GET");
+		users.add(user)
 		return users;
 	}
 	@GetMapping ("/{userId}")
