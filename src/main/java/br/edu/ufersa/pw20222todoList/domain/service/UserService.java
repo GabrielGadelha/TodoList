@@ -25,6 +25,10 @@ public class UserService {
 		User user = repository.findByUuid(id);
 		return user;
 	}
+	public User getByEmailAndSenha(User usu) {
+		User user = repository.findByEmailAndSenha(usu.getEmail(), usu.getSenha());
+		return user;
+	}
 	public User createUser(User usu) {
 		usu.setUuid(UUID.randomUUID());
 		repository.save(usu);
