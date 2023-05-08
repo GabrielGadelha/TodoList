@@ -63,6 +63,15 @@ public class UserController {
 		}
 		else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	@PostMapping ("/login")
+	public ResponseEntity<UserDTO> logar(@Valid @RequestBody CreateUserDTO dto){
+		User user = service.getByEmailAndSenha(mapper.map(dto, User.class));
+		if(user!=null) {
+			UserDTO dto2 = mapper.map(user, UserDTO.class);
+			return new ResponseEntity<>(dto2, HttpStatus.OK);	
+		}
+		else return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	@PutMapping
 	public ResponseEntity<UserDTO> atualizarTudo(@Valid @RequestBody UpdateDTO dto){
 		User user = service.updateUser(mapper.map(dto, User.class));
